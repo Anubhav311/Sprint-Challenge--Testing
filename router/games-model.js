@@ -4,6 +4,7 @@ module.exports = {
     find,
     add,
     findById,
+    remove,
 };
 
 function find() {
@@ -21,3 +22,9 @@ function findById(id) {
       .where({ id })
       .first();
   }
+
+function remove(id) {
+    return db('games')
+        .where({ id })
+        .del();
+}

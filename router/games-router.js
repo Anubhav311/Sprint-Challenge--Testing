@@ -49,7 +49,7 @@ router.delete('/:id', (req, res) => {
             if(game > 0) {
                 res.status(200).json(game)
             } else {
-                res.status(404).send({message: `there's no game with id: ${req.params.id}`})
+                res.status(404).send({message: `there's no game with the same id`})
             }
         })
         .catch(err => {

@@ -108,7 +108,31 @@ describe('server', () => {
         })
     })
 
-    describe('DELETE:id/', () => {})
+    describe('DELETE:id/', () => {
+        it('should return 404 status if game does not exist', () => {
+            return request(server)
+                .delete('/api/games/5')
+                .then(res => {
+                    expect(res.status).toBe(404);
+                })
+        });
+
+        it('should return number of items deleted', () => {
+            return request(server)
+                .delete('/api/games/1')
+                .then(res => {
+                    expect(res.body).toBe(1)
+                })
+        })
+
+        it('should send message if game does not exist', () => {
+            return request(server)
+                .delete('/api/games/5')
+                .then(res => {
+                    expect(res.body.message).toBe("there's no game with the same id");
+                })
+        })
+    })
 
 })
 
