@@ -81,5 +81,34 @@ describe('server', () => {
         })
     })
 
+    describe('GET:id/', () => {
+
+        it('should send 200 status code', () => {
+            return request(server)
+                .get('/api/games/1')
+                .then(res => {
+                    expect(res.status).toBe(200);
+                })
+        })
+
+        it('should send 404 status code if game is not found', () => {
+            return request(server)
+                .get('/api/games/5')
+                .then(res => {
+                    expect(res.status).toBe(404);
+                })
+        }) 
+
+        it('should send an object', () => {
+            return request(server)
+                .get('/api/games')
+                .then(res => {
+                    expect(typeof(res.body)).toBe("object");
+                })
+        })
+    })
+
+    describe('DELETE:id/', () => {})
+
 })
 
